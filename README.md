@@ -1,1 +1,1 @@
-SEE src/main/java/app/Runner.java to RUN Application
+GO src/main/java/app/Runner.java to RUN Application
