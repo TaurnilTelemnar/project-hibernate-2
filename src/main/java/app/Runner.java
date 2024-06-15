@@ -5,11 +5,9 @@ import entity.*;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
+import java.time.LocalDateTime;
 import java.time.Year;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class Runner {
     public static void main(String[] args) {
@@ -73,7 +71,7 @@ public class Runner {
             rentalQuery.setMaxResults(1);
             Rental rental = rentalQuery.getSingleResult();
             Customer customer = rental.getCustomer();
-            rental.setReturnDate(new Date());
+            rental.setReturnDate(LocalDateTime.now());
 
             session.getTransaction().commit();
 
@@ -106,7 +104,7 @@ public class Runner {
             Film rentFilm = inventory.getFilm();
 
             Rental rental = Rental.builder()
-                    .rentalDate(new Date())
+                    .rentalDate(LocalDateTime.now())
                     .staff(managerStoreStaff)
                     .customer(customer)
                     .inventory(inventory)
@@ -164,19 +162,27 @@ public class Runner {
                     .title("Приключения Java-разработчика")
                     .description("Культовый боевик с элементами головоломки")
                     .releaseYear(Year.now())
+                    .rating(Rating.NC17)
+                    .specialFeatures(Set.of(Feature.DELETED_SCENES, Feature.BEHIND_THE_SCENES))
                     .originalLanguage(originalLanguage)
                     .language(language)
                     .rentalDuration(6L)
                     .rentalRate(9.99D)
                     .length(189L)
                     .replacementCost(99.99D)
-                    .rating("NC-17")
-                    .specialFeatures("Trailers")
                     .filmCategories(categories)
                     .filmActors(actors)
                     .build();
 
             session.persist(film);
+
+            FilmText filmText = FilmText.builder()
+                    .film(film)
+                    .title("Adventures of Java Developer")
+                    .description("Не читай большой stackTrace - он начнет читать тебя")
+                    .build();
+
+            session.persist(filmText);
 
             Query<Store> storeQuery = session.createQuery(
                     "SELECT s FROM Store s", Store.class);
@@ -200,6 +206,7 @@ public class Runner {
 
             System.out.println("===>>> Событие «сняли новый фильм, и он стал доступен для аренды» <<<===");
             System.out.println("Новый фильм: " + film);
+            System.out.println("Текст фильма: " + filmText);
             System.out.println("Доступные для аренды копии: ");
             for (Inventory inventory : inventories) {
                 System.out.println("Копия фильма " + inventory);

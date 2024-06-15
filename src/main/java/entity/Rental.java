@@ -5,11 +5,11 @@ import lombok.*;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 
 @Entity
-@Table(name = "rental")
+@Table(schema = "movie",name = "rental")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -22,10 +22,11 @@ public class Rental {
     @Id
     @Column(name = "rental_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //Integer
     private Long rentalId;
 
     @Column(name = "rental_date")
-    private Date rentalDate;
+    private LocalDateTime rentalDate;
 
     @ManyToOne
     @JoinColumn(name = "inventory_id")
@@ -38,7 +39,7 @@ public class Rental {
     private Customer customer;
 
     @Column(name = "return_date")
-    private Date returnDate;
+    private LocalDateTime returnDate;
 
     @ManyToOne
     @JoinColumn(name = "staff_id")

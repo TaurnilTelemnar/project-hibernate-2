@@ -7,7 +7,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "staff")
+@Table(schema = "movie",name = "staff")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -19,6 +19,7 @@ public class Staff {
     @Id
     @Column(name = "staff_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //Byte
     private Long staffId;
 
     @Column(name = "first_name")
@@ -34,7 +35,7 @@ public class Staff {
 
     @Lob
     @ToString.Exclude
-    @Column(name = "picture")
+    @Column(name = "picture", columnDefinition = "blob")
     private byte[] picture;
 
     @Column(name = "email")
@@ -45,7 +46,7 @@ public class Staff {
     @ToString.Exclude
     private Store store;
 
-    @Column(name = "active")
+    @Column(name = "active", columnDefinition = "BIT")
     private Boolean isActive;
 
     @Column(name = "username")

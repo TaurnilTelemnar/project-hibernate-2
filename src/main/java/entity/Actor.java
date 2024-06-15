@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 import java.util.Collection;
 
 @Entity
-@Table(name = "actor")
+@Table(schema = "movie", name = "actor")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -20,6 +20,7 @@ public class Actor {
     @Id
     @Column(name = "actor_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //Short
     private Long actorId;
 
     @Column(name = "first_name")
@@ -36,8 +37,8 @@ public class Actor {
     @ManyToMany()
     @JoinTable(
             name = "film_actor",
-            joinColumns = @JoinColumn(name = "actor_id"),
-            inverseJoinColumns = @JoinColumn(name = "film_id")
+            joinColumns = @JoinColumn(name = "actor_id", referencedColumnName = "actor_id"),
+            inverseJoinColumns = @JoinColumn(name = "film_id", referencedColumnName = "film_id")
     )
     private Collection<Film> films;
 

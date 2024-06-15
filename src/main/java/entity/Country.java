@@ -7,7 +7,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "country")
+@Table(schema = "movie",name = "country")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -19,6 +19,7 @@ public class Country {
     @Id
     @Column(name = "country_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //Short
     private Long countryId;
 
     @Column(name = "country")

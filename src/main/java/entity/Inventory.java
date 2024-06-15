@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 import java.util.Collection;
 
 @Entity
-@Table(name = "inventory")
+@Table(schema = "movie",name = "inventory")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -20,6 +20,7 @@ public class Inventory {
     @Id
     @Column(name = "inventory_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //Integer
     private Long inventoryId;
 
     @ManyToOne

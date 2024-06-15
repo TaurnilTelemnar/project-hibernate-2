@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
-@Table(name = "payment")
+@Table(schema = "movie",name = "payment")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -20,6 +20,7 @@ public class Payment {
     @Id
     @Column(name = "payment_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //Short
     private Long paymentId;
 
     @ManyToOne
@@ -32,12 +33,13 @@ public class Payment {
     @ToString.Exclude
     private Staff staff;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "rental_id")
     @ToString.Exclude
     private Rental rental;
 
     @Column(name = "amount")
+    //BigDecimal
     private Double amount;
 
     @Column(name = "payment_date")

@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "film_text")
+@Table(schema = "movie",name = "film_text")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -14,10 +14,10 @@ import lombok.*;
 public class FilmText {
     @Id
     @JoinColumn(name = "film_id")
-    @OneToOne(targetEntity = Film.class)
+    @OneToOne()
     private Film film;
 
-    @Column(name = "description")
+    @Column(name = "description", columnDefinition = "text")
     private String description;
 
     @Column(name = "title")

@@ -7,7 +7,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "address")
+@Table(schema = "movie",name = "address")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -19,6 +19,7 @@ public class Address {
     @Id
     @Column(name = "address_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //Short
     private Long addressId;
 
     @Column(name = "address")
