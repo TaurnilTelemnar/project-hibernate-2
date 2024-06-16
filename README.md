@@ -129,9 +129,3 @@ Rental(аренды) отсутствует дата возврата.
                @OneToOne()
                private Film film;
 
-
-
-
-
-
-
