@@ -1,4 +1,6 @@
 GO src/main/java/app/Runner.java to RUN Application
+hibernate properties: src/main/resources/hibernate.properties
+p6spy properties: src/main/resources/spy.properties
 
 Замечания:
 1. Связи "film -M---M- category" и "film -M---M- actor". В задаче они позиционируются как 
